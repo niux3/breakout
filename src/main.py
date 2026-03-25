@@ -1,10 +1,10 @@
 import arcade
-from src.config import Config
-from src.views.gameview import GameView
+from src.omega_breakout_game import OmegaBreakoutGame
+from src.views.game_view import GameView
 
 
 if __name__ == '__main__':
-    window = arcade.Window(Config.WIDTH, Config.HEIGHT, Config.TITLE)
+    window = OmegaBreakoutGame()
     game = GameView()
     window.show_view(game)
     arcade.run()
