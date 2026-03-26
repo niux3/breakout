@@ -1,7 +1,10 @@
 from typing import Optional
 import arcade
 from src.config import Config
-from src.sprites.paddle_sprite import PaddleSprite
+from src.sprites import (
+    PaddleSprite,
+    BallSprite
+)
 from src.views.base_view import BaseView
 
 
@@ -14,11 +17,16 @@ class GameView(BaseView):
         self.paddle_sprite: Optional[PaddleSprite] = None
         self.shadow_sprite: Optional[PaddleSprite] = None
 
+        self.ball_sprite: Optional[BallSprite] = None
+        self.halo_ball_sprite: Optional[BallSprite] = None
+
         self.setup()
 
     def setup(self) -> None:
         paddle_texture = self.load_texture('images/paddle.png')
         shadow_paddle_texture = self.load_texture('images/shadow_paddle.png')
+        ball_texture = self.load_texture('images/ball.png')
+        halo_ball_texture = self.load_texture('images/shadow_ball.png')
 
         self.paddle_sprite = PaddleSprite(paddle_texture)
         self.paddle_sprite.set_position(Config.WIDTH / 2, 100)
@@ -26,8 +34,20 @@ class GameView(BaseView):
         self.shadow_sprite = PaddleSprite(shadow_paddle_texture)
         self.shadow_sprite.set_position(Config.WIDTH / 2 + 15, 85)
 
+        self.ball_sprite = BallSprite(ball_texture, scale=0.5, speed=10)
+        self.ball_sprite.center_x = Config.WIDTH / 2
+        self.ball_sprite.center_y = Config.HEIGHT / 2
+
+        self.halo_ball_sprite = BallSprite(
+            halo_ball_texture, scale=0.5, speed=10)
+        self.halo_ball_sprite.center_x = Config.WIDTH / 2
+        self.halo_ball_sprite.center_y = Config.HEIGHT / 2
+
         self.background_sprites.append(self.shadow_sprite)
+        self.background_sprites.append(self.halo_ball_sprite)
+
         self.foreground_sprites.append(self.paddle_sprite)
+        self.foreground_sprites.append(self.ball_sprite)
 
     def on_draw(self) -> None:
         self.clear()
