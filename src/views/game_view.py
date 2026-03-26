@@ -64,7 +64,7 @@ class GameView(BaseView):
         new_x = max(left_limit, min(x, right_limit))
 
         self.paddle_sprite.center_x = new_x
-        self.shadow_sprite.center_x = x + 15
+        self.shadow_sprite.center_x = self.paddle_sprite.center_x + 15
         self.shadow_sprite.center_y = self.paddle_sprite.center_y - 15
 
     def on_update(self, delta_time: float) -> None:
