@@ -10,3 +10,4 @@ class OmegaBreakoutGame(arcade.Window):
             Config.TITLE
         )
         self.background_color = Config.BG_COLOR
+        self.set_mouse_visible(False)
