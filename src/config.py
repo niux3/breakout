@@ -7,7 +7,7 @@ class Config:
 
     TITLE: str = 'Omega Breakout'
     WIDTH: int = 1440
-    HEIGHT: int = 1080
+    HEIGHT: int = 960
 
     BG_COLOR = (8, 24, 49, 255)
 
