@@ -22,3 +22,13 @@ class GameView(BaseView):
     def on_draw(self) -> None:
         self.clear()
         self.all_sprites_list.draw()
+
+    def on_key_press(self, symbol: int, modifiers: int) -> None:
+        if symbol == arcade.key.ESCAPE:
+            arcade.exit()
+
+    def on_mouse_motion(self, x: int, y: int, dx: int, dy: int) -> None:
+        self.paddle_sprite.center_x = x
+
+    def on_update(self, delta_time: float) -> None:
+        self.all_sprites_list.update()
