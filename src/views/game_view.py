@@ -1,5 +1,6 @@
 from typing import Optional
 import arcade
+from src.config import Config
 from src.sprites.paddle_sprite import PaddleSprite
 from src.views.base_view import BaseView
 
@@ -28,7 +29,9 @@ class GameView(BaseView):
             arcade.exit()
 
     def on_mouse_motion(self, x: int, y: int, dx: int, dy: int) -> None:
-        self.paddle_sprite.center_x = x
+        left_limit = self.paddle_sprite.width / 2
+        right_limit = Config.WIDTH - self.paddle_sprite.width / 2
+        self.paddle_sprite.center_x = max(left_limit, min(x, right_limit))
 
     def on_update(self, delta_time: float) -> None:
         self.all_sprites_list.update()
