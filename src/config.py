@@ -10,6 +10,8 @@ class Config:
     HEIGHT: int = 960
 
     BG_COLOR = (8, 24, 49, 255)
+    COLOR_A = (40, 234, 244, 255)
+    COLOR_B = (243, 229, 94, 255)
 
     @classmethod
     def setup_resource(cls) -> None:
