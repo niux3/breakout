@@ -20,9 +20,54 @@ class GameView(BaseView):
         self.ball_sprite: Optional[BallSprite] = None
         self.halo_ball_sprite: Optional[BallSprite] = None
 
+        self.score_static_text: Optional[arcade.Text] = None
+        self.live_static_text: Optional[arcade.Text] = None
+        self.score_text: Optional[arcade.Text] = None
+        self.lives_text: Optional[arcade.Text] = None
+
+        self.score = 128_480
+        self.lives = 3
+
         self.setup()
 
     def setup(self) -> None:
+        self.load_font("fonts/RussoOne-Regular.ttf")
+        self.score_static_text = arcade.Text(
+            text="SCORE: ",
+            x=20,
+            y=Config.HEIGHT - 40,
+            color=Config.COLOR_A,
+            font_size=20,
+            font_name="Russo One"
+        )
+
+        self.score_text = arcade.Text(
+            text=str(self.score),
+            x=130,
+            y=Config.HEIGHT - 40,
+            color=Config.COLOR_B,
+            font_size=20,
+            font_name="Russo One"
+        )
+
+        self.live_static_text = arcade.Text(
+            text="LIVES: ",
+            x=Config.WIDTH - 150,
+            y=Config.HEIGHT - 40,
+            color=Config.COLOR_A,
+            font_size=20,
+            font_name="Russo One"
+        )
+
+        self.lives_text = arcade.Text(
+            text=str(self.lives),
+            x=Config.WIDTH - 50,
+            y=Config.HEIGHT - 40,
+            color=Config.COLOR_B,
+            font_size=20,
+            font_name="Russo One"
+        )
+
         paddle_texture = self.load_texture('images/paddle.png')
         shadow_paddle_texture = self.load_texture('images/shadow_paddle.png')
         ball_texture = self.load_texture('images/ball.png')
@@ -51,6 +96,11 @@ class GameView(BaseView):
 
     def on_draw(self) -> None:
         self.clear()
+        self.score_static_text.draw()
+        self.score_text.draw()
+        self.live_static_text.draw()
+        self.lives_text.draw()
+
         self.background_sprites.draw()
         self.foreground_sprites.draw()
 
