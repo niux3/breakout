@@ -9,8 +9,9 @@ class BallSprite(arcade.Sprite):
         self.speed_y: float = speed
 
     def update(self, delta_time: float = 1 / 60, *args, **kwargs) -> None:
-        self.center_x += self.speed_x
-        self.center_y += self.speed_y
+        ...
+        # self.center_x += self.speed_x
+        # self.center_y += self.speed_y
 
     def bounce_x(self) -> None:
         self.speed_x *= -1
